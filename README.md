@@ -45,25 +45,25 @@ Error Handling: Global error handling middleware
 
 **Setup Instructions**
 
-1.Clone the repository
+1.Clone the repository:
    git clone <repository-url>
    cd event-ticket-system
 
-2.Install dependencies
+2.Install dependencies:
 npm install
 
 3.Configure environment variables
 
-4.Setup MySQL database
+4.Setup MySQL database:
 mysql -u root -p
 SOURCE path
 
 5.Start the server
 
-# Development mode cmd
+# Development mode cmd:
 npm run dev
 
-# Production mode cmd
+# Production mode cmd:
 npm start
 
 **API Documentation**
@@ -118,8 +118,8 @@ Get event by ID
 **POST /api/events/create-event**
 Create a new event (Admin only)
 Requires: Authentication + Admin
-Body:
-json{
+Json Body:
+{
 "title": "Tech Conference 2024",
 "description": "Annual technology conference",
 "date": "2024-12-31T10:00:00Z",
@@ -134,13 +134,19 @@ json{
 **PUT /api/events/:id/update-event**
 Update an event (Admin only)
 Requires: Authentication + Admin
+Json Body:
+{
+"title": "Tech Conference 2024",
+"description": "Annual technology conference - 2024",
+}
+
 
 **Bookings
 POST /api/bookings/create-booking**
 Requires: Authentication
 Book a ticket for an event
-Body:
-json{
+Json Body:
+{
 "eventId": "507f1f77bcf86cd799439011"
 }
 
