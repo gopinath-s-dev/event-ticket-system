@@ -1,12 +1,12 @@
-**Event & Ticket System API**
+**Event & Ticket System API**:
 A production-ready, secure RESTful API for managing events and ticket bookings with dual database architecture (MySQL + MongoDB).
 
-**Architecture Overview**
+**Architecture Overview**:
 This system demonstrates the ability to connect and utilize two different databases within a single application:
 1.MySQL (Relational): Handles User Accounts and Bookings where relationships and ACID compliance are critical
 2.MongoDB (Document): Manages Event Details with flexible schemas and System Logs
 
-**Design Decision**
+**Design Decision**:
 Why This Architecture?
 This dual-database architecture was chosen to demonstrate polyglot persistence and leverage the strengths of both database types:
 MySQL for Transactional Data:
