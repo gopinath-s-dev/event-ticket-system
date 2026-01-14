@@ -44,6 +44,7 @@ Logging: Structured logging in MongoDB for audit trails
 Error Handling: Global error handling middleware
 
 **Setup Instructions**
+
 1.Clone the repository
    git clone <repository-url>
    cd event-ticket-system
