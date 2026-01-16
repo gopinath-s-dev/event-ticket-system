@@ -122,7 +122,7 @@ class BookingService {
         { new: true }
       );
 
-      mongoUpdated = true;
+      mongoUpdated = !!event;
 
       if (!event) {
         throw new Error("Event not found");
@@ -144,7 +144,7 @@ class BookingService {
       if (mysqlTransaction && !mysqlTransaction.finished)
         await mysqlTransaction.rollback();
 
-      if (mongoUpdated) {
+      if (mongoUpdated && !booking) {
         try {
           await Event.findByIdAndUpdate(booking.eventId, {
             $inc: { availableTickets: -1 },

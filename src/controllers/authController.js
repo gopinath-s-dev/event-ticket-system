@@ -84,7 +84,7 @@ class AuthController {
       res.status(200).json({
         success: true,
         data: {
-          user: req.user.toSafeJSON(),
+          user: req.user,
         },
       });
     } catch (error) {

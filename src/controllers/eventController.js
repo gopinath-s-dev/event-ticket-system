@@ -38,23 +38,13 @@ class EventController {
       const limit = parseInt(req.query.limit) || 10;
       const skip = (page - 1) * limit;
 
-      const query = {};
-
-      if (req.query.upcoming === "true") {
-        query.date = { $gte: new Date() };
-      }
-
-      if (req.query.search) {
-        query.$text = { $search: req.query.search };
-      }
-
       const [events, total] = await Promise.all([
-        Event.find(query)
+        Event.find({})
           .sort({ date: 1 })
           .skip(skip)
           .limit(limit)
-          .select("-__v"),
-        Event.countDocuments(query),
+          .select({ _v: 0 }),
+        Event.countDocuments({}),
       ]);
 
       res.status(200).json({
@@ -78,7 +68,7 @@ class EventController {
     try {
       const { id } = req.params;
 
-      const event = await Event.findById(id).select("-__v");
+      const event = await Event.findById(id).select({ _v: 0 });
 
       if (!event) {
         return res.status(404).json({
@@ -107,7 +97,7 @@ class EventController {
       const event = await Event.findByIdAndUpdate(id, updates, {
         new: true,
         runValidators: true,
-      }).select("-__v");
+      });
 
       if (!event) {
         return res.status(404).json({

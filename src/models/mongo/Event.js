@@ -40,7 +40,7 @@ const eventSchema = new mongoose.Schema(
     },
     availableTickets: {
       type: Number,
-      required: true,
+      required: [true, "Available tickets is required"],
       min: [0, "Available tickets cannot be negative"],
     },
     metadata: {
@@ -50,7 +50,6 @@ const eventSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-    versionKey: "__v",
   }
 );
 

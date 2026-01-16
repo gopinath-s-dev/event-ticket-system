@@ -14,13 +14,6 @@ import {
 } from "../utils/validationSchemas.js";
 
 router.use(authenticate);
-router.get(
-  "/paginate",
-  validate(paginationSchema, "query"),
-  eventController.listEvents
-);
-router.get("/:id/fetchById", eventController.getEventById);
-
 router.post(
   "/create-event",
   isAdmin,
@@ -29,5 +22,11 @@ router.post(
 );
 
 router.put("/:id/update-event", isAdmin, eventController.updateEvent);
+router.get(
+  "/paginate",
+  validate(paginationSchema, "query"),
+  eventController.listEvents
+);
+router.get("/:id/fetchById", eventController.getEventById);
 
 export default router;

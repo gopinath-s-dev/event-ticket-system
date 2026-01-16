@@ -38,7 +38,6 @@ const logSchema = new mongoose.Schema(
   },
   {
     timestamps: false,
-    collection: "logs",
   }
 );
 
