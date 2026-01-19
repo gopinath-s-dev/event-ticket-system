@@ -43,7 +43,7 @@ class EventController {
           .sort({ date: 1 })
           .skip(skip)
           .limit(limit)
-          .select({ _v: 0 }),
+          .select({ __v: 0 }),
         Event.countDocuments({}),
       ]);
 
@@ -68,7 +68,7 @@ class EventController {
     try {
       const { id } = req.params;
 
-      const event = await Event.findById(id).select({ _v: 0 });
+      const event = await Event.findById(id).select({ __v: 0 });
 
       if (!event) {
         return res.status(404).json({
@@ -109,7 +109,7 @@ class EventController {
       await loggerService.logInfo(
         `Event updated: ${event.title}`,
         "event_update",
-        { eventId: id, updatedBy: req.user.id }
+        { eventId: id, updatedBy: req.user.id },
       );
 
       res.status(200).json({
