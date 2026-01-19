@@ -22,8 +22,7 @@ class BookingService {
         },
         {
           new: true,
-          session: null,
-        }
+        },
       );
 
       mongoUpdated = !!event;
@@ -44,7 +43,7 @@ class BookingService {
           eventName: event.title,
           status: "confirmed",
         },
-        { transaction: mysqlTransaction }
+        { transaction: mysqlTransaction },
       );
 
       await mysqlTransaction.commit();
@@ -72,7 +71,7 @@ class BookingService {
         } catch (rollbackError) {
           console.error(
             "Failed to rollback MongoDB ticket count:",
-            rollbackError
+            rollbackError,
           );
           await loggerService.log({
             level: "error",
@@ -119,7 +118,7 @@ class BookingService {
       const event = await Event.findByIdAndUpdate(
         booking.eventId,
         { $inc: { availableTickets: 1 } },
-        { new: true }
+        { new: true },
       );
 
       mongoUpdated = !!event;
